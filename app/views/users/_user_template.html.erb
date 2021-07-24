@@ -1,0 +1,18 @@
+<h4>投稿者の情報</h4>
+
+<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+<table class="table">
+    <tr>
+        <th>名前</th>
+        <th><%= user.name %></th>
+    </tr>
+    <tr>
+        <th>紹介文</th>
+        <th><%= user.introduction %></th>
+    </tr>
+</table>
+
+<%= link_to edit_user_path(user.id), class: "btn btn-outline-dark btn-sm btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+<% end %>
+
