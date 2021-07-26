@@ -1,6 +1,18 @@
 <div class="container">
     <div class="row mt-5">
+
         <div class="col col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <% if @user.errors.any? %>
+            <div id="error_explanation">
+                <div class="error"><%= pluralize(@user.errors.count, "つエラーがあります。") %> "すべて記入してください"</div>
+                <ul>
+                    <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
             <h2>投稿者の情報</h2>
             <%= form_with model:@user, local: true do |f| %>
             <div class="form-group ">

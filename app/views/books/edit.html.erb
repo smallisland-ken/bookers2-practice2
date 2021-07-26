@@ -1,28 +1,40 @@
 <div class="container">
     <div class="row mt-5">
-      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-        <h4>本の編集</h4>
-        <%= form_with model:@book, local: true do |f| %>
-        
-        <div class="form-group">
-        <%= f.label :Title %>
-        <%= f.text_field :title, class:"form-control" %>
-        <div>
-        
-        <div class="form-group">
-        <%= f.label :Opinion %>
-        <%= f.text_area :body, class: "form-control" %>
-        </div>
-        
-        <div class="form-group">
-        <%= f.submit 'アップデート', class:"btn btn-success" %>
-        </div>
-        
-        <div>        
-        <%= link_to "Show", book_path(@book) %> | <%= link_to "Back", books_path %> 
-        </div>
-        
-        <% end %>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            
+            <% if @book.errors.any? %>
+              <div id="error_explation">
+                <div class="error"><%= pluralize(@book.errors.count, "error") %> prohibited this product from being saved:</div>
+                  <ul>
+                    <% @book.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                    <% end %>
+                  </ul>
+              </div>
+            <% end %>
+            
+            <h4>本の編集</h4>
+            <%= form_with model:@book, local: true do |f| %>
+            
+            <div class="form-group">
+            <%= f.label :Title %>
+            <%= f.text_field :title, class:"form-control" %>
+            </div>
+            
+            <div class="form-group">
+            <%= f.label :Opinion %>
+            <%= f.text_area :body, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+            <%= f.submit 'アップデート', class:"btn btn-success" %>
+            </div>
+            
+            <div>        
+            <%= link_to "Show", book_path(@book) %> | <%= link_to "Back", books_path %> 
+            </div>
+            
+            <% end %>
         </div>
     </div>
 </div>
