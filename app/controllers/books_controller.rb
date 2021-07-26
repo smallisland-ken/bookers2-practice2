@@ -25,8 +25,13 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.save(book_params)
+    if @book.save(book_params)
+    flash[:notice] = '本の情報が更新されました'
     redirect_to book_path(@book)
+    else
+    flash[:alert] = '本の情報の更新に失敗しました'
+    render :edit
+    end
   end
 
   def destroy

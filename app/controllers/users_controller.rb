@@ -18,8 +18,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(list_params)
+
+    if @user.update(list_params)
     redirect_to user_path(@user)
+    flash[:notice] = 'ユーザープロフィールが更新されました'
+    else
+    flash.now[:alert] = 'ユーザープロフィールの更新に失敗しました'
+    render :edit
+    end
   end
   
   private
